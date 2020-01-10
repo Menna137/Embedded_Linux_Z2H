@@ -2,7 +2,14 @@
 touch Data
 if [ -z $1 ]
 then
+	echo "This data of your phonebook note :"
 	cat Data
+	echo "You can enter options with this script :"
+	echo "-i for insert new contact"
+	echo "-v for show all data of your phonebook note"
+	echo "-s for search about unique contact"
+	echo "-d for delete specific contact you will enter"
+	echo "-e for delete all data"
 elif [ $1 = '-i' ]
 then
 	read -p "Enter a name :" name
