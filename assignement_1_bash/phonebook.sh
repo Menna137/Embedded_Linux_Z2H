@@ -1,9 +1,19 @@
 #!/bin/bash
+#to print the bash script name and directory which the bash script in you can try this ways [echo "scriptdir=`dirname "$BASH_SOURCE"`" or echo "DIR=$(dirname "$(readlink -f "$0")")"]
+echo "The script you are running has basename `basename "$0"`, dirname `dirname "$0"`"
+echo "The present working directory is `pwd`"
+
 touch Data
 if [ -z $1 ]
 then
 	echo "This data of your phonebook note :"
-	cat Data
+	#check if the Data file is empty or not
+	if [ -s Data ]
+	then
+		cat Data
+	else
+		echo "Data is empty file"
+	fi
 	echo "You can enter options with this script :"
 	echo "-i for insert new contact"
 	echo "-v for show all data of your phonebook note"
@@ -17,7 +27,12 @@ then
 	echo $name $number >> Data
 elif [ $1 = '-v' ]
 then
-	cat Data
+	if [ -s Data ]
+	then
+		cat Data
+	else
+		echo "Data is empty file"
+	fi
 elif [ $1 = '-s' ]
 then
 	read -p "Enter name to search on it :" search
